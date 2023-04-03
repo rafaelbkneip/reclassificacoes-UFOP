@@ -41,7 +41,10 @@ cont_alunos = 2
 
 #Acessa a página para cada um dos cursos
 for i in range(len(cursos)):
+    curso_aux = cursos[i].text
+    print(curso_aux)
     cursos[i].click()
+    
     sleep(5)
     
     while(True):
@@ -55,7 +58,8 @@ for i in range(len(cursos)):
         for j in range (1,15):
             aux.append(navegador.find_element(By.XPATH, '/html/body/center/center/table[1]/tbody/tr[' +str (cont_alunos)+ ']/td[' + str(j) + ']').text)
             print(aux)
-            
+        aux.append(curso_aux)
+
         lista.append(aux)
         aux = []
 
@@ -86,6 +90,7 @@ sheet.write(0, 10, 'L10')
 sheet.write(0, 11, 'L13')
 sheet.write(0, 12, 'L14')
 sheet.write(0, 13, 'Status')
+sheet.write(0, 13, 'Curso')
 
 #Todas as listas possuem o mesmo número de elementos
 for i in range(len(lista)):
@@ -103,6 +108,8 @@ for i in range(len(lista)):
     sheet.write(i+1, 11, lista[i][11])
     sheet.write(i+1, 12, lista[i][12])
     sheet.write(i+1, 13, lista[i][13])
+    sheet.write(i+1, 13, lista[i][14])
+
 
 book.close()
 
